@@ -1,0 +1,43 @@
+{
+  "name": "react-native-slack-emoji",
+  "version": "0.0.1",
+  "description": "An implementation of Slack like Emoji components in React Native",
+  "main": "dist/react-native-slack-emoji.cjs.js",
+  "jsnext:main": "dist/react-native-slack-emoji.esm.js",
+  "module": "dist/react-native-soundcloud-waveform.esm.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "prepublishOnly": "run-s build",
+    "prepack": "run-s build",
+    "build": "rollup -c",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ignore-path .gitignore --ext .js --ext .jsx",
+    "fix-lint": "yarn lint -- --fix"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react-native",
+    "slack",
+    "emoji",
+    "react-native-slack",
+    "react-native-slack-emoji"
+  ],
+  "author": {
+    "name": "Pritish Vaidya",
+    "email": "pritishvaidya94@gmail.com",
+    "url": "pritishvaidya.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pritishvaidya/react-native-slack-emoji.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pritishvaidya/react-native-slack-emoji/issues"
+  },
+  "homepage": "https://github.com/pritishvaidya/react-native-slack-emoji#readme"
+}

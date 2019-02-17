@@ -14,7 +14,7 @@ function SearchContent({
   if (!emojis.length) {
     return (
       <View style={style.emptySearchWrapper}>
-        <Text style={style.emptySearchText}>{i18n.notfound}</Text>
+        <Text style={style.emptySearchText}>{i18n.notFound}</Text>
         <Text style={[style.emptySearchText, { fontWeight: '600' }]}>{`"${searchText}"`}</Text>
       </View>
     );

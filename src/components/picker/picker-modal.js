@@ -132,9 +132,16 @@ class PickerModal extends React.Component {
 
 PickerModal.defaultProps = {
   data: emojiData,
-  custom: [],
+  custom: [{
+    name: 'Octocat',
+    short_names: ['octocat'],
+    text: '',
+    emoticons: [],
+    keywords: ['github'],
+    imageUrl: 'https://octodex.github.com/images/Sentrytocat_octodex.jpg',
+  }],
   i18n: {},
-  set: 'apple',
+  // set: 'native',
   onShow: () => {},
   onClose: () => {},
   animationType: 'slide',
@@ -155,7 +162,9 @@ PickerModal.propTypes = {
     }),
   ),
   i18n: PropTypes.object,
-  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']),
+  // set: PropTypes.oneOf(
+  // ['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']
+  // ),
   onShow: PropTypes.func,
   onClose: PropTypes.func,
   animationType: PropTypes.string,

@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -89,5 +91,30 @@ export default StyleSheet.create({
     marginHorizontal: 6,
     marginVertical: 5,
     fontSize: 30,
+  },
+  categoryEmojiImage: {
+    marginHorizontal: 6,
+    marginVertical: 5,
+    resizeMode: 'contain',
+    height: 30,
+    width: 30,
+  },
+  bottomPicker: {
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    borderTopWidth: 0.05,
+    borderTopColor: '#b7b7b7',
+  },
+  category: {
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: width / 10,
+  },
+  categoryIcon: {
+    fontSize: 30,
+    color: '#888888',
   },
 });

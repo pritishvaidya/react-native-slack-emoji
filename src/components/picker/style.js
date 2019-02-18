@@ -7,6 +7,36 @@ export default StyleSheet.create({
     flex: 1,
     marginBottom: 30,
   },
+  wrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  picker: {
+    marginBottom: 5,
+    marginRight: 7,
+    height: 30,
+    borderRadius: 8,
+    borderWidth: 0.2,
+    borderColor: '#b7b7b7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emojiPicker: {
+    flexDirection: 'row',
+    backgroundColor: '#e5f5fa',
+    borderColor: '#43b4e1',
+  },
+  emoji: {
+    marginHorizontal: 10,
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#0063a8',
+  },
+  pickerIcon: {
+    marginHorizontal: 15,
+    fontSize: 16,
+    color: '#5f5f5f',
+  },
   searchBarWrapper: {
     flex: 0.1,
     alignItems: 'center',

@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "react-native-slack-emoji": {
-      "signature": "49b0d8166033733c1fce46688cd40881",
+      "signature": "ef7746ea990ada60f7e5dd3674d58d2a",
       "file": true
     }
   }

@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
 import {
-  FlatList, TouchableHighlight, Text, View, Image,
+  FlatList, Image, Text, TouchableHighlight, View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,6 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { charFromUtf16 } from '../../utils';
 
 import style from './style';
+import { getEmoji } from '../../utils/store';
 
 const colors = ['#fabfff', '#aee0ff', '#abe981', '#f8ef55'];
 
@@ -37,12 +38,22 @@ class CategoryContent extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let stickyIndex = 0;
     const list = [];
     const stickyHeaderIndices = [];
     const { categories, i18n } = this.props;
     const categoryKeys = Object.keys(i18n.categories);
+
+    let recentCategory = categories.filter(({ id }) => id === 'recent')[0];
+    const recentEmojis = await getEmoji();
+    if (recentCategory) {
+      recentCategory.emojis = recentEmojis;
+    } else {
+      recentCategory = { id: 'recent', name: 'Recent', recentEmojis };
+    }
+    categories.push(recentCategory);
+
     for (const value of categoryKeys) {
       const filteredValues = categories.filter(({ id }) => id === value)[0];
       const emojis = filteredValues ? filteredValues.emojis : [];
@@ -83,10 +94,10 @@ class CategoryContent extends React.Component {
     this.setState({ activeIndex: index });
   }
 
-  selectEmoji(emoji, data) {
+  selectEmoji(emoji, name, data) {
     const { onSelect } = this.props;
     this.randomColor();
-    onSelect(emoji, data);
+    onSelect(emoji, name, data);
   }
 
   render() {
@@ -129,7 +140,7 @@ class CategoryContent extends React.Component {
                   return (
                     <TouchableHighlight
                       underlayColor={randomColor}
-                      onPress={() => this.selectEmoji(emoji, data.emojis[name])}
+                      onPress={() => this.selectEmoji(emoji, name, data.emojis[name])}
                       onLongPress={this.randomColor}
                       style={[style.categoryEmojiWrapper]}
                       key={emoji}

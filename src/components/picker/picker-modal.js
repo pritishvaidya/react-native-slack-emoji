@@ -74,7 +74,7 @@ class PickerModal extends React.Component {
 
   selectEmoji = async (emoji, name, data) => {
     const { onSelect, close } = this.props;
-    onSelect(emoji, data);
+    onSelect(emoji, name, data);
     close();
     await addEmoji(name);
   }

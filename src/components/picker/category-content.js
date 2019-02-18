@@ -50,7 +50,7 @@ class CategoryContent extends React.Component {
     if (recentCategory) {
       recentCategory.emojis = recentEmojis;
     } else {
-      recentCategory = { id: 'recent', name: 'Recent', recentEmojis };
+      recentCategory = { id: 'recent', name: 'Recent', emojis: recentEmojis };
     }
     categories.push(recentCategory);
 

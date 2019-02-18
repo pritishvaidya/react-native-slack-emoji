@@ -28,7 +28,7 @@ function SearchContent({
           <TouchableHighlight
             key={filteredEmoji}
             underlayColor="blue"
-            onPress={() => onSelect(emoji, data.emojis[filteredEmoji])}
+            onPress={() => onSelect(emoji, filteredEmoji, data.emojis[filteredEmoji])}
           >
             <View style={style.searchRow}>
               <Text style={style.searchEmoji}>{emoji}</Text>

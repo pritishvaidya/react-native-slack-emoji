@@ -1,8 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import {
-  Modal, SafeAreaView, KeyboardAvoidingView,
-} from 'react-native';
+import { KeyboardAvoidingView, Modal, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import SearchBar from './search-bar';
@@ -14,6 +12,7 @@ import { uncompress } from '../../utils/data';
 
 import style from './style';
 import CategoryContent from './category-content';
+import { addEmoji } from '../../utils/store';
 
 const I18N = {
   search: 'Search',
@@ -36,10 +35,9 @@ class PickerModal extends React.Component {
   constructor(props) {
     super(props);
     const {
-      visible, data, custom, i18n,
+      data, custom, i18n,
     } = props;
 
-    this.recentCategory = { id: 'recent', name: 'Recent', emojis: null };
     this.customCategory = { id: 'custom', name: 'Custom', emojis: null };
 
     if (data.compressed) {
@@ -51,6 +49,7 @@ class PickerModal extends React.Component {
 
     this.categories = [];
     const allCategories = [].concat(this.data.categories);
+
     if (custom.length) {
       this.customCategory.emojis = custom.map(emoji => ({
         ...emoji,
@@ -65,7 +64,6 @@ class PickerModal extends React.Component {
     }
 
     this.state = {
-      visible,
       searchText: null,
     };
   }
@@ -74,22 +72,23 @@ class PickerModal extends React.Component {
 
   _keyExtractor = item => item;
 
-  closeModal = () => this.setState({ visible: false })
-
-  selectEmoji = (emoji, data) => {
-    const { onSelect } = this.props;
+  selectEmoji = async (emoji, name, data) => {
+    const { onSelect, close } = this.props;
     onSelect(emoji, data);
-    this.closeModal();
+    close();
+    await addEmoji(name);
   }
 
   render() {
     const {
+      visible,
+      close,
       onShow,
       onClose,
       animationType,
       presentationStyle,
     } = this.props;
-    const { visible, searchText } = this.state;
+    const { searchText } = this.state;
     const filteredEmojis = Object.keys(this.data.emojis)
       .filter(key => key.includes(searchText && searchText.toLowerCase()));
     return (
@@ -104,7 +103,7 @@ class PickerModal extends React.Component {
       >
         <SafeAreaView style={style.container}>
           <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
-            <SearchBar onChangeText={this.filter} cancel={this.closeModal} />
+            <SearchBar onChangeText={this.filter} cancel={close} />
             {searchText
               ? (
                 <SearchContent
@@ -151,6 +150,7 @@ PickerModal.defaultProps = {
 PickerModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   data: PropTypes.object,
   custom: PropTypes.arrayOf(
     PropTypes.shape({

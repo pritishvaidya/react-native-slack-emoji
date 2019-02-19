@@ -20,6 +20,8 @@ const DEFAULTS = [
 
 const KEY = 'react-native-slack-emoji/RECENT';
 
+const MAX_RECENT_LENGTH = 15;
+
 let items; let
   initialized;
 
@@ -41,13 +43,13 @@ async function addEmoji(emoji) {
   const updatedArray = [...items];
   const emojiIndex = updatedArray.indexOf(emoji);
   if (emojiIndex !== -1) {
-    updatedArray.push(updatedArray.splice(emojiIndex, 1)[0]);
+    updatedArray.unshift(updatedArray.splice(emojiIndex, 1)[0]);
   } else {
-    updatedArray.push(emoji);
+    updatedArray.unshift(emoji);
   }
-  items = updatedArray;
-  await AsyncStorage.setItem(KEY, JSON.stringify(updatedArray));
-  return updatedArray;
+  items = updatedArray.slice(0, MAX_RECENT_LENGTH);
+  await AsyncStorage.setItem(KEY, JSON.stringify(items));
+  return items;
 }
 
 async function getEmoji() {

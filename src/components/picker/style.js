@@ -5,7 +5,6 @@ const { width } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 30,
   },
   wrapper: {
     flexDirection: 'row',
@@ -39,6 +38,7 @@ export default StyleSheet.create({
   },
   searchBarWrapper: {
     flex: 0.1,
+    minHeight: 30,
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 10,

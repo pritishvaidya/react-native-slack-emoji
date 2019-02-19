@@ -1,6 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import { KeyboardAvoidingView, Modal, SafeAreaView } from 'react-native';
+import {
+  KeyboardAvoidingView, Platform, Modal, SafeAreaView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
 import SearchBar from './search-bar';
@@ -107,7 +109,7 @@ class PickerModal extends React.Component {
         transparent={false}
       >
         <SafeAreaView style={style.container}>
-          <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
+          <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' && 'padding'} enabled>
             <SearchBar onChangeText={this.filter} cancel={this.closeModal} />
             {searchText
               ? (

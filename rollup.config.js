@@ -43,7 +43,7 @@ const commonPlugins = [
   }),
   commonjs({
     namedExports: {
-      'react-native': ['View', 'Dimensions', 'TouchableOpacity', 'TouchableHighlight', 'Image', 'Text', 'ScrollView', 'FlatList', 'Image', 'KeyboardAvoidingView', 'Modal', 'SafeAreaView'],
+      'react-native': ['View', 'Dimensions', 'Platform', 'TouchableOpacity', 'TouchableHighlight', 'Image', 'Text', 'ScrollView', 'FlatList', 'Image', 'KeyboardAvoidingView', 'Modal', 'SafeAreaView'],
       'react-is': ['isElement', 'isValidElementType', 'ForwardRef'],
     },
   }),

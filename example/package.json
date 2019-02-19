@@ -11,7 +11,7 @@
     "react": "16.6.3",
     "react-native": "0.58.3",
     "react-native-vector-icons": "^6.2.0",
-    "react-native-slack-emoji": "*",
+    "react-native-slack-emoji": "*"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",

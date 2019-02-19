@@ -44,37 +44,6 @@ const buildSearch = (emoji) => {
   return search.join(',');
 };
 
-const compress = (emoji) => {
-  emoji.short_names = emoji.short_names.filter(short_name => short_name !== emoji.short_name);
-  delete emoji.short_name;
-
-  emoji.sheet = [emoji.sheet_x, emoji.sheet_y];
-  delete emoji.sheet_x;
-  delete emoji.sheet_y;
-
-  emoji.added_in = parseInt(emoji.added_in);
-  if (emoji.added_in === 6) {
-    delete emoji.added_in;
-  }
-
-  for (const key in mapping) {
-    emoji[mapping[key]] = emoji[key];
-    delete emoji[key];
-  }
-
-  for (const key in emoji) {
-    const value = emoji[key];
-
-    if (Array.isArray(value) && !value.length) {
-      delete emoji[key];
-    } else if (typeof value === 'string' && !value.length) {
-      delete emoji[key];
-    } else if (value === null) {
-      delete emoji[key];
-    }
-  }
-};
-
 const uncompress = (data) => {
   data.compressed = false;
 
@@ -102,4 +71,4 @@ const uncompress = (data) => {
   }
 };
 
-export { buildSearch, compress, uncompress };
+export { buildSearch, uncompress };

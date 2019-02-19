@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native

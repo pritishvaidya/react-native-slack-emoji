@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "react-native-slack-emoji": {
-      "signature": "ef7746ea990ada60f7e5dd3674d58d2a",
-      "file": true
-    }
-  }
-}

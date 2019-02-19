@@ -15,9 +15,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    flexDirection: 'row',
     backgroundColor: 'white',
-    paddingTop: 50,
+    paddingTop: 70,
   },
   profileWrapper: {
     flex: 1,
@@ -71,28 +70,30 @@ export default class App extends Component {
     const { emojiList } = this.state;
     return (
       <View style={styles.container}>
-        <View style={{ flex: 0.2 }}>
-          <Image source={{ uri: 'https://pritishvaidya.com/static/243ca309ea5cb3e20eb3c45bad183714/8cd81/favicon.png' }} style={styles.image} />
-        </View>
-        <View style={{ flex: 0.8 }}>
-          <Text style={styles.name}>Pritish Vaidya</Text>
-          <Text style={styles.text}>
-              We shall go on to the end. We shall fight in France,
-              we shall fight on the seas and oceans, we shall fight with growing confidence
-              and growing strength in the air, we shall defend our island, whatever
-              the cost may be.
-            {'\n'}
-            {'\n'}
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ flex: 0.2 }}>
+            <Image source={{ uri: 'https://pritishvaidya.com/static/243ca309ea5cb3e20eb3c45bad183714/8cd81/favicon.png' }} style={styles.image} />
+          </View>
+          <View style={{ flex: 0.8 }}>
+            <Text style={styles.name}>Pritish Vaidya</Text>
+            <Text style={styles.text}>
+                We shall go on to the end. We shall fight in France,
+                we shall fight on the seas and oceans, we shall fight with growing confidence
+                and growing strength in the air, we shall defend our island, whatever
+                the cost may be.
+              {'\n'}
+              {'\n'}
 
-              We shall fight on the beaches, we shall fight
-              on the landing grounds, we shall fight in the fields and in the streets,
-              we shall fight in the hills; we shall never surrender
-          </Text>
-          <Picker
-            emojiList={emojiList}
-            updateEmoji={this.updateEmoji}
-            onSelect={this.onSelect}
-          />
+                We shall fight on the beaches, we shall fight
+                on the landing grounds, we shall fight in the fields and in the streets,
+                we shall fight in the hills; we shall never surrender
+            </Text>
+            <Picker
+              emojiList={emojiList}
+              updateEmoji={this.updateEmoji}
+              onSelect={this.onSelect}
+            />
+          </View>
         </View>
       </View>
     );

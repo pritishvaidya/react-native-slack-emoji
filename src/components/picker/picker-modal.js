@@ -72,25 +72,30 @@ class PickerModal extends React.Component {
 
   _keyExtractor = item => item;
 
+  closeModal = () => {
+    const { close } = this.props;
+    this.setState({ searchText: null }, () => close());
+  }
+
   selectEmoji = async (emoji, name, data) => {
-    const { onSelect, close } = this.props;
+    const { onSelect } = this.props;
     onSelect(emoji, name, data);
-    close();
+    this.closeModal();
     await addEmoji(name);
   }
 
   render() {
     const {
       visible,
-      close,
       onShow,
       onClose,
       animationType,
       presentationStyle,
     } = this.props;
     const { searchText } = this.state;
+    const trimmedText = searchText && searchText.replace(/:/g, '');
     const filteredEmojis = Object.keys(this.data.emojis)
-      .filter(key => key.includes(searchText && searchText.toLowerCase()));
+      .filter(key => key.includes(trimmedText && trimmedText.toLowerCase()));
     return (
       <Modal
         visible={visible}
@@ -103,7 +108,7 @@ class PickerModal extends React.Component {
       >
         <SafeAreaView style={style.container}>
           <KeyboardAvoidingView style={style.container} behavior="padding" enabled>
-            <SearchBar onChangeText={this.filter} cancel={close} />
+            <SearchBar onChangeText={this.filter} cancel={this.closeModal} />
             {searchText
               ? (
                 <SearchContent

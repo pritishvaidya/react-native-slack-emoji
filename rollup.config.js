@@ -34,11 +34,16 @@ const commonPlugins = [
     babelrc: false,
     exclude: 'node_modules/**',
     presets: [['@babel/env', { loose: true, modules: false }], '@babel/react'],
-    plugins: ['@babel/plugin-proposal-class-properties'],
+    plugins: ['@babel/plugin-proposal-class-properties', ['module-resolver', {
+      root: ['./'],
+      alias: {
+        _tests_: './_tests_',
+      },
+    }]],
   }),
   commonjs({
     namedExports: {
-      'react-native': ['View', 'Dimensions', 'TouchableOpacity'],
+      'react-native': ['View', 'Dimensions', 'TouchableOpacity', 'TouchableHighlight', 'Image', 'Text', 'ScrollView', 'FlatList', 'Image', 'KeyboardAvoidingView', 'Modal', 'SafeAreaView'],
       'react-is': ['isElement', 'isValidElementType', 'ForwardRef'],
     },
   }),
